@@ -6,5 +6,5 @@ class Lox_Error:
         Lox_Error.report(line, "", message)
     
     def report(line, where, message):
-        print(f"[line {line} Error {where}: {message}")
-        Lox_Error.hadError = True
+        print(f"[line {line} Error {where}: {message}]")
+        Lox_Error.had_error = True
