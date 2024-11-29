@@ -1,0 +1,1 @@
+python3 tools/ast_generator.py src
