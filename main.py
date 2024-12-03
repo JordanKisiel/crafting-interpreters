@@ -1,6 +1,8 @@
 import sys
 from src.lox_error import Lox_Error
 from src.scanner import Scanner
+from src.parser import *
+from src.ast_printer import *
 
 def main():
     # incorrect number of args
@@ -21,17 +23,15 @@ def compile_to_lox(source_file, dest_file):
 def compile_file(source_file):
     scanner = Scanner(source_file)
     tokens = scanner.scan_tokens()
+    parser = Parser(tokens)
+    expression = parser.parse()
 
     # don't compile if there are errors
     if Lox_Error.had_error:
         sys.exit(65)
 
-    # for now just print the tokens
-    token_str = ""
-    for token in tokens:
-        token_str += f"{token}\n" 
-    
-    return token_str
+    # for now just print out AST
+    return AST_Printer().print(expression)
 
 
 if __name__ == "__main__":
